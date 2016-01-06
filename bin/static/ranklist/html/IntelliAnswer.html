@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋学习</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body class="bg-white">
+		<div class="w720">
+			<!--<header class="clearfix bg-f6">
+				<div class="close fr" onclick="window.open('about:blank','_self'); window.close();"></div>
+			</header>-->
+			<div class="title-bar pad-bottom0 clearfix bg-f6 pad-top1">
+				<img src="../img/kangaroo-s.png" class="fl">
+				<p class="f12 tit-s">恭喜<span id="name">你</span>完成了本节刷题
+					<!--打败了99%的同学-->
+				</p>
+				<p class="f18 tit-b">获得做题小霸王称号</p>
+			</div>
+			<div class="study-stat  bg-f6 tc">
+				<ul class="clearfix">
+					<li>
+						做题
+						<p class="color-blue"><span id="total">XXX</span>道</p>
+					</li>
+					<li>
+						正确
+						<p class="color-greenlight"><span id="trues">XXX</span>道</p>
+					</li>
+					<li>
+						错题
+						<p class="color-melonred"><span id="falses">XXX</span>道</p>
+					</li>
+				</ul>
+			</div>
+			<div class="zw-situation bg-f6 tc">
+				<h2 class="f16 color-black"><span id="subjectname">中国近现代史</span></h2>
+				<ul class="clearfix">
+					<li>掌握情况
+						<p class="color-blue"><span id="master">90</span>%</p>
+					</li>
+					<li>
+						<img src="../img/kangaroo-zw.png" id="masterImg">
+						<p class="color-blue" id="mastersummary">抱大腿~小袋都被你折服了！</p>
+					</li>
+				</ul>
+			</div>
+			<footer class="bg-white clearfix">
+				<a href="#" class="share-btn bg-greenlight color-white " onclick="go()">我也要刷題</a>
+
+			</footer>
+			<div class="wxlink">
+			刷题长按图片 识别图中二维码
+			<img src="../img/IOS.png" width="60%">
+		</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/shareanswer.js"></script>
+	<script src="../js/openApp.js"></script>
+	<script>
+		var url = location.search;
+		var theRequest = IntelliAnswer(url, true);
+		document.getElementById('name').innerText = theRequest.name;
+		document.getElementById('total').innerText = theRequest.total;
+		document.getElementById('trues').innerText = theRequest.trues;
+		document.getElementById('falses').innerText = theRequest.falses;
+		document.getElementById('subjectname').innerText = theRequest.subjectname;
+		var masters = theRequest.master;
+		var summary = "";
+		var imgsrc = "";
+		document.getElementById('master').innerText = masters;
+		if (masters >= 0 && masters < 30) {
+			summary = "多刷题才可以过关哦";
+			imgsrc = "../img/brush_level1.png";
+		} else if (masters >= 30 && masters < 45) {
+			summary = "进步很快咯，加油！";
+			imgsrc = "../img/brush_level2.png";
+		} else if (masters >= 45 && masters < 60) {
+			summary = "通过考试，就在前方~";
+			imgsrc = "../img/brush_level3.png";
+		} else if (masters >= 60 && masters < 75) {
+			summary = "越刷越轻松~";
+			imgsrc = "../img/brush_level4.png";
+		} else if (masters >= 75 && masters < 85) {
+			summary = "真棒! 分分钟秒杀考试了";
+			imgsrc = "../img/brush_level5.png";
+		} else if (masters >= 85) {
+			summary = "抱大腿~小袋被你折服了！";
+			imgsrc = "../img/brush_level6.png";
+		}
+		document.getElementById('mastersummary').innerText = summary;
+		document.getElementById('masterImg').src = imgsrc;
+       
+		if (mobileAppInstall.gettype()!=1) {
+				if (mobileAppInstall.isWeixin()) {
+					$('.wxlink').show();
+					$('.share-btn').hide();
+				} else {
+					$('.share-btn').show();
+				}
+			}
+
+			function go() {
+				if (mobileAppInstall.gettype() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+	</script>
+
+</html>

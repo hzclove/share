@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>刷题</title>
+		<link rel="stylesheet" href="../css/index.css">
+		<link rel="stylesheet" href="../css/swiper.3.1.7.min.css" />
+		<style>
+			html,
+			body,
+			/*.w720,*/
+			
+			.ui-page,
+			.sublist,
+			.itemli {
+				height: 100%;
+			}
+			
+			.math {
+				display: inline-block;
+				font-size: 1.4rem;
+				line-height: 2rem;
+			}
+		</style>
+	</head>
+
+	<body class="bg-graylight">
+		<div class="fix-down clearfix">
+			<img src="../img/appicon.png" class="appicon">
+			<span class="tit f14 color5">口袋自考,刷题过关</span>
+			<a href="#" class="down-btn f14 color-white fr ">立即打开</a>
+		</div>
+		<div class="w720 swiper-container">
+			<ul id="subject" class="sublist swiper-wrapper">
+			</ul>
+			<!--<span class="span-down">下一题</span>
+			<span class="span-up">上一题</span>-->
+		</div>
+		<div class="weixin-div" style="margin-top: 20%;font-size:1.4em;">
+			<div class="wxlink">
+				长按图片 识别图中二维码,下载口袋自考
+				<img src="../img/IOS.png" style="width:13em">
+			</div>
+		</div>
+
+		<script src="../js/jquery.min.js"></script>
+		<!--<script src="../js/jquery.mobile-1.4.5.min.js"></script>-->
+		<script src="../js/fun.js"></script>
+		<script src="../js/openApp.js"></script>
+		<script type="text/javascript" src="../js/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) }, tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"],
+			["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" }, });
+		</script>
+		<script src="../js/initlist.js"></script>
+		<script src="../js/swiper.3.1.7.min.js"></script>
+		<script>
+			//根据手机浏览器版本加载刷题脚本
+			var type = mobileAppInstall.browerType();
+			if (type == 0) {
+				document.write("<script src=\"../js/brush-ios.js\">" + "</scr" + "ipt>")
+			} else {
+				document.write("<script src=\"../js/brush.js\">" + "</scr" + "ipt>");
+			}
+		</script>
+		<!--<script src="../js/brush.js"></script>-->
+		<script>
+			$('.fix-down').click(function() {
+				
+				if (mobileAppInstall.browerType() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				}
+
+				if (mobileAppInstall.isWeixin()) {
+					$('.fix-down').hide();
+					$('.swiper-container').hide();
+					$('.weixin-div').show();
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			});
+		</script>
+	</body>
+
+</html>

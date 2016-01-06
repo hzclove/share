@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋自考</title>
+		<link rel="stylesheet" href="../css/style.css">
+
+       
+		<style type="text/css">
+			html,
+			body {
+				height: 100%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<img src="../img/icon-hug.png" style="position:fixed;top:-512px;">
+		<div class="w720 share-bg fa" id="bgdiv">
+			<div class="down">
+				<a href="javascript:;" class="down-app" onclick="go()">下载口袋自考</a>
+				
+			</div>
+			<div class="weixin-div" style="margin-top: 20%;font-size:1.2em;">
+			<div class="wxlinks">
+				长按图片 识别图中二维码,下载口袋自考
+				<img src="../img/IOS.png" style="width:13em">
+			</div>
+		</div>
+		</div>
+	
+		<!--<script type="text/javascript">
+			function godown() {
+				goPost(1);
+				CheckBrowser();
+			}
+			var url = location.search;
+			var theRequest = AnalyserUrl(url, true);
+			var advertise=theRequest.advertise;
+			
+			goPost();
+
+			function goPost() {
+				var types = arguments[0] ? arguments[0] : 0;
+				$.ajax({
+					type: "POST",
+					url: "http://share.kdzikao.com/prompt/add.page",
+					data: {
+						address: advertise,
+						type: types
+					},
+					dataType: "json",
+					success: function() {
+						//alert("success");
+					},
+					error: function(data) {
+						//alert("error");
+					}
+				});
+			}
+
+			function CheckBrowser() {
+				/* 
+				 * 智能机浏览器版本信息:
+				 *
+				 */
+				var browser = {
+					versions: function() {
+						var u = navigator.userAgent,
+							app = navigator.appVersion;
+						return { //移动终端浏览器版本信息 
+							trident: u.indexOf('Trident') > -1, //IE内核 
+							presto: u.indexOf('Presto') > -1, //opera内核 
+							webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核 
+							gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核 
+							mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端 
+							ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端 
+							android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器 
+							iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器 
+							iPad: u.indexOf('iPad') > -1, //是否iPad 
+							webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部 
+						};
+					}(),
+					language: (navigator.browserLanguage || navigator.language).toLowerCase()
+						// document.writeln("语言版本: " + browser.language); 
+						// document.writeln(" 是否为移动终端: " + browser.versions.mobile); 
+						// document.writeln(" ios终端: " + browser.versions.ios); 
+						// document.writeln(" android终端: " + browser.versions.android); 
+						// document.writeln(" 是否为iPhone: " + browser.versions.iPhone); 
+						// document.writeln(" 是否iPad: " + browser.versions.iPad); 
+						// document.writeln(navigator.userAgent);
+				}
+				if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+					window.location = "qrcode.html";
+				} else if (browser.versions.android) {
+					window.location = "http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao";
+				} else {
+					//其他默认先去要应用宝
+					window.location = "http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao";
+				}
+			}
+
+			function AnalyserUrl(url, IsPrint) {
+				var theRequest = {};
+				if (url.indexOf("?") != -1) {
+					var str = url.substring(1);
+					strs = str.split("&");
+					//strs = str.split("$$$");  //王勇想法修改逻辑
+					for (var i = 0; i < strs.length; i++) {
+						theRequest[strs[i].split("=")[0]] = decodeURI((strs[i].split("=")[1]).split("&")[0]);
+					}
+				}
+				if (IsPrint) {
+					var mes = "";
+					for (var i in theRequest) mes += i + ":" + theRequest[i] + "\n";
+					console.log("\n" + mes);
+				}
+				return theRequest;
+			}
+		</script>-->
+		 <script type="text/javascript" src="../js/jquery.min.js" ></script>
+		 <script type="text/javascript" src="../js/openApp.js" ></script>
+
+		<script>
+			if (mobileAppInstall.gettype()!=1) {
+				if (mobileAppInstall.isWeixin()) {
+					$('.weixin-div').show();
+					$("#bgdiv").removeClass('share-bg');
+					$('.down').hide();
+				}
+			}
+
+			function go() {
+				if (mobileAppInstall.gettype() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+		</script>
+	</body>
+
+</html>

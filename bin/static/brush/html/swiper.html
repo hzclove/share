@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/swiper.3.1.7.min.css" />
+
+		<style>
+			/*.swiper-wrapper,.swiper-slide{width:400px;height: 200px;}*/
+			  .swiper-slide{
+	color:#fff;
+	line-height:300px;
+	text-align:center;
+	font-size:50px;
+}
+  .blue-slide{
+	background: #4390EE;
+}
+  .red-slide {
+background: #CA4040;
+}
+  .orange-slide {
+background: #FF8604;
+}
+  .green-slide{background:#49a430;}
+  .pink-slide{background:#973e76;}
+  pre div{
+	line-height:1;
+	width:100%;
+	float:left;
+}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide orange-slide">Slide 1</div>
+				<div class="swiper-slide blue-slide">Slide 2</div>
+				<div class="swiper-slide red-slide">Slide 3</div>
+				<div class="swiper-slide orange-slide">Slide 4</div>
+				<div class="swiper-slide blue-slide">Slide 5</div>
+				<div class="swiper-slide red-slide">Slide 6</div>
+			</div>
+			<!--<div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>-->
+		</div>
+		<script type="text/javascript" src="../js/swiper.3.1.7.min.js"></script>
+		<script language="javascript">
+			var mySwiper = new Swiper('.swiper-container',{
+			//prevButton:'.swiper-button-prev',
+			//nextButton:'.swiper-button-next',
+			})
+		</script>
+
+	</body>
+
+</html>

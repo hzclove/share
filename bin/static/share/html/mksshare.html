@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>2016马克思考情早知道</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<style type="text/css">
+			/*html,
+			    body {
+			        height: 100%;
+			    }*/
+		</style>
+	</head>
+
+	<body>
+		<div class="w720">
+			<img src="../img/mksShare/mks_01.jpg" width="100%">
+			<img src="../img/mksShare/mks_02_01.jpg" width="100%">
+			<div class="makdonwbg">
+				<span class="ckickDown" onclick="go()">点击听课</span>
+			</div>
+			<img src="../img/mksShare/mks_02_03.jpg" width="100%">
+			<img src="../img/mksShare/mks_03.jpg" width="100%">
+			<img src="../img/mksShare/mks_04.jpg" width="100%">
+			<img src="../img/mksShare/mks_05.jpg" width="100%">
+			<img src="../img/mksShare/mks_06.jpg" width="100%">
+			<img src="../img/mksShare/mks_07.jpg" width="100%">
+			<img src="../img/mksShare/mks_08.jpg" width="100%">
+			<img src="../img/mksShare/mks_09.jpg" width="100%">
+			<img src="../img/mksShare/mks_10.jpg" width="100%">
+			<div class="fix-down rgbbag clearfix" style="none;">
+				<img src="../img/appicon.png" class="appicon">
+				<span class="tit f14 color5">口袋自考</span>
+				<a href="javascript:;" class="down-btn bg-mks f14 color-white fr " onclick="go()">点击下载</a>
+
+				<!--href="http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao"-->
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../js/fun.js" ></script>
+		<script type="text/javascript" src="../js/openApp.js" ></script>
+		<script>
+			function go() {
+				if (mobileAppInstall.gettype() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

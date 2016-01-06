@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋学习</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/radialindicator.css">
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body class="bg-white">
+		<div class="w720">
+			<header class="clearfix bg-f6">
+				<!--<div class="close fr" onclick="window.open('about:blank','_self'); window.close();"></div>-->
+			</header>
+			<div class="prg-cont-wrap pr bg-f6 pad-top1">
+				<div class="prg-cont tc chart" id="indicatorContainer">
+				</div>
+				<div class="Correct-rate f12 tc pa ">正确率</div>
+			</div>
+			<div class="title-bar clearfix bg-f6">
+				<img src="../img/kangaroo-s.png" class="fl">
+				<p class="f12 tit-s">恭喜<span id='name'>你</span>完成了本节刷题
+					<!--打败了<span id='winner'>00</span>%的同学--></p>
+				<p class="f18 tit-b">获得做题小霸王称号</p>
+			</div>
+			<div class="study-stat  tc">
+				<h2 class="f16" id="subjectname">第二次鸦片战争</h2>
+				<ul class="clearfix">
+					<li>
+						做题
+						<p class="color-blue"><span id="total">XXX</span>道</p>
+					</li>
+					<li>
+						正确
+						<p class="color-greenlight"><span id="trues">XXX</span>道</p>
+					</li>
+					<li>
+						错题
+						<p class="color-melonred"><span id="falses">XXX</span>道</p>
+					</li>
+				</ul>
+			</div>
+			<footer class="bg-white ">
+				<a href="javascript:;" class="share-btn bg-greenlight color-white " onclick="go()">我也要刷題</a>
+			</footer>
+		</div>
+		<div class="wxlink">
+			刷题长按图片 识别  图中二维码
+			<img src="../img/IOS.png" width="60%">
+		</div>
+		<div class="safari">
+			请使用safari浏览器打开
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/shareanswer.js"></script>
+	<script src="../js/openApp.js"></script>
+	<script src="../js/radialIndicator.js"></script>
+	<script>
+		var url = location.search;
+		var theRequest = ChapterAnswer(url, true);
+		document.getElementById('name').innerText = theRequest.name;
+		 //		if (theRequest.winner == -1) {} else {
+		 //			document.getElementById('winner').innerText = decodeURI(theRequest.winner);
+		 //		}
+		document.getElementById('total').innerText = theRequest.total;
+		document.getElementById('trues').innerText = theRequest.trues;
+		document.getElementById('falses').innerText = theRequest.falses;
+		document.getElementById('subjectname').innerText = theRequest.subjectname;
+		var precision = theRequest.precision;
+		 //正确率
+		var WindowWidth = $(window).width();
+		var rad = 80;
+		if (WindowWidth > 320) {
+			rad = 90;
+		}
+		$('#indicatorContainer').radialIndicator({
+			barColor: '#87CEEB',
+			barWidth: 6,
+			barBgColor: '#b2ecfa', //unfilled bar color
+			barColor: '#00b8e6',
+			fontColor: '#02b1cc',
+			initValue: precision,
+			roundCorner: true,
+			percentage: true,
+			fontFamily: 'sma',
+			fontSize: 46,
+			fontWeight: 'lighter',
+			radius: rad
+		});
+
+		if (mobileAppInstall.gettype()!=1) {
+				if (mobileAppInstall.isWeixin()) {
+					$('.wxlink').show();
+					$('.share-btn').hide();
+				} else {
+					$('.share-btn').show();
+				}
+			}
+
+			function go() {
+				if (mobileAppInstall.gettype() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+			
+	</script>
+
+</html>

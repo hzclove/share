@@ -1,0 +1,1 @@
+function AnalyserUrl(B,E){var A={};if(B.indexOf("?")!=-1){var D=B.substring(1);strs=D.split("&");for(var C=0;C<strs.length;C++){A[strs[C].split("=")[0]]=decodeURI((strs[C].split("=")[1]).split("&")[0])}}if(E){var F="";for(var C in A){F+=C+":"+A[C]+"\n"}console.log("\n"+F)}return A};

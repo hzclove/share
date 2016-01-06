@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="/static/share/img/favicon.ico">
+    <title>{{escape(title)}}</title>
+    <link rel="stylesheet" href="/static/share/css/style.css">
+    <script src="/static/share/js/waterfall.js"></script>
+    <script type="text/javascript" src="/static/share/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/share/js/openApp.js"></script>
+    <script type="text/javascript" src="/static/share/js/fun.js"></script>
+</head>
+
+<body>
+    <div class="w720 share color5">
+        <h2>{{escape(title)}}</h2>
+        <div>{{escape(pub_date)}}<a href="#">&nbsp;{{escape(author)}}</a></div>
+        {% for ct in content_list %} {% if ct[1] == 0 %}
+        <p>　　{{escape(ct[0])}}</p>
+        {% elif ct[1] == 1 %} {% for pic in ct[0] %}
+        <img src="{{escape(pic)}}" class="mt-14"> {% end %} {% end %} {% end %} {% for ct in content_list %} {% if ct[1] == 2 %}
+        <ul id="container" class="clearfix ">
+            {% for pic in ct[0] %}
+            <li class="box">
+                <img src="{{escape(pic)}}">
+            </li>
+            {% end %}
+        </ul>
+        {% end %} {% end %}
+    </div>
+    <div class="fix-down clearfix" style="display:none;">
+        <img src="/static/share/img/appicon.png" class="appicon">
+        <span class="tit f14 color5">口袋自考,刷题过关</span>
+        <a href="javascript:;" class="down-btn f14 color-white fr " onclick="go()">点击下载</a>
+        <!--href="http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao"-->
+    </div>
+    <div class="wxlink">
+        长按图片 识别图中二维码
+        <img src="/static/share/img/IOS.png" width="60%">
+    </div>
+    <div class="safari">
+        请使用safari浏览器打开
+    </div>
+    <div class="share2">
+        <div id="comment" class="comment">
+            <div class="commTitle clearfix"><span class="f16">热门跟帖</span><span class="f14 fr pinglun">我来说两句</span>
+            </div>
+            <ul class="commList ">
+            </ul>
+            <div class="more tc">查看更多跟帖</div>
+        </div>
+    </div>
+    <div class="fixback" style="display: none;">
+        <div class="rep-comment p-1">
+            <div class="clearfix tc  f16">
+                <span>回复/评论</span>
+                <span class='fl'>取消</span>
+                <span class="fr ">发表</span>
+            </div>
+            <textarea class="mt-1 f16" rows="4" placeholder="没事写两句"></textarea>
+        </div>
+    </div>
+    <div class="fix-down fix-down-repcom" style="display:none;">
+        <textarea class="f14" rows="1" placeholder="没事写两句 " id="commentTxt"></textarea>
+        <button class="down-btn f14 color-white fr fabiao">发表</button>
+    </div>
+    <div class="showSuccess">
+        发表成功
+    </div>
+    <script type="text/javascript" src="/static/share/js/comment.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.fix-down').show();
+        if (mobileAppInstall.gettype() != 1) {
+            if (mobileAppInstall.isWeixin()) {
+                $('.wxlink').show();
+                $('.fix-down').hide();
+                $('.fix-down-repcom').show();
+                $('.fix-down-repcom').css('bottom', '0');
+                $('.share2').css('margin-bottom', '6.5rem');
+            } else {
+                $('.fix-down').show();
+            }
+        }
+    });
+
+    function go() {
+        if (mobileAppInstall.gettype() == 1) {
+            mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+            return;
+        } else {
+            window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+        }
+    }
+    </script>
+</body>
+
+</html>

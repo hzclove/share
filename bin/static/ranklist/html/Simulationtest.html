@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋学习</title>
+		<link rel="stylesheet" href="../css/style.css">
+
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body class="bg-f6">
+		<div class="w720">
+			<header class="clearfix pr">
+				<!--<span class="headericon"><i class="header-icon-s"></i></span>-->
+				<div class="headercenter" id="subjectname">中国近现代史</div>
+				<!--	<span class="headright"><a onclick="window.open('about:blank','_self'); window.close();"><i class="close"></i></a></span>-->
+			</header>
+			<i class="big-head big-head-good"></i>
+			<!--<div class="color-greenlight tc">打败了98%的人力资源专业考生！棒棒哒 ~~</div>-->
+			<div class="tc f16 color-blue"><span class="color-yellow" id="name">昵称</span>在口袋自考刷题，速来围观～</div>
+			<div class="score-situation color-gray">
+				<ul class="clearfix tc ">
+					<li>分数
+						<p><span id="source">90</span>分</p>
+					</li>
+					<li>耗时
+						<p><span id="time">45</span></p>
+					</li>
+					<li id="levelli">难度
+						<p id="level">中等</p>
+					</li>
+				</ul>
+			</div>
+			<footer class="bg-white ">
+				<a href="#" class="share-btn bg-greenlight color-white " onclick="go()">我也要刷題</a>
+			</footer>
+			<div class="wxlink">
+			刷题长按图片 识别图中二维码
+			<img src="../img/IOS.png" width="60%">
+		</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/fun.js"></script>
+	<script src="../js/shareanswer.js"></script>
+	<script src="../js/openApp.js"></script>
+	<script>
+		window.onload = function() {
+			var url = location.search;
+			var theRequest = Simulationtest(url, true);
+			document.getElementById('name').innerText = theRequest.name;
+			document.getElementById('source').innerText = theRequest.source;
+			document.getElementById('time').innerText = formatSeconds(theRequest.time);
+			if (theRequest.level == "HIGH") {
+				document.getElementById('level').innerText = "难";
+			} else if (theRequest.level == "MIDDLE") {
+				document.getElementById('level').innerText = "中等";
+			} else if (theRequest.level == "LOW") {
+				document.getElementById('level').innerText = "简单";
+			} else {
+				document.getElementById('levelli').style.display = "none";
+				$('li').css("width", "50%");
+			}
+			document.getElementById('subjectname').innerText = theRequest.subjectname;
+		}
+
+		if (mobileAppInstall.gettype()!=1) {
+				if (mobileAppInstall.isWeixin()) {
+					$('.wxlink').show();
+					$('.share-btn').hide();
+				} else {
+					$('.share-btn').show();
+				}
+			}
+
+			function go() {
+				if (mobileAppInstall.gettype() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+	</script>
+
+</html>

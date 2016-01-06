@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋自考</title>
+		<link rel="stylesheet" href="../css/index.css">
+		<style>
+			html,
+			body,
+			.w720 {
+				height: 100%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<img src="../img/icon-hug.png" style="position:fixed;top:-512px;">
+		<div class="w720 bg-start">
+			<div class="weixin-div">
+				<div class="beginBush-weixin ">开始刷题</div>
+				<div class="wxlink">
+					长按图片 识别图中二维码,下载口袋自考
+					<img src="../img/IOS.png" >
+				</div>
+			</div>
+			<img src="../img/beginBrush.png" class="beginBush" />
+			<img src="../img/downApp.png" class="downApp" onclick="go()" />
+
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/openApp.js"></script>
+		<script type="text/javascript" src="../js/fun.js"></script>
+		<script>
+			$('.beginBush').click(function() {
+				var url = location.search;
+				var theRequest = AnalyserUrl(url, true);
+				var subjectid = theRequest.subjectid;
+				//location.href="index.html?subjectid="+subjectid;
+				location.href = "index.html?subjectid=" + subjectid;
+			});
+			$('.beginBush-weixin').click(function() {
+				var url = location.search;
+				var theRequest = AnalyserUrl(url, true);
+				var subjectid = theRequest.subjectid;
+				//location.href="index.html?subjectid="+subjectid;
+				location.href = "index.html?subjectid=" + subjectid;
+			});
+			
+			if (mobileAppInstall.browerType() != 1) {
+				if (mobileAppInstall.isWeixin()) {
+					$('.beginBush').hide();
+					$('.downApp').hide();
+					$('.weixin-div').show();
+				}
+			}
+
+			function go() {
+				if (mobileAppInstall.browerType() == 1) {
+					mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+					return;
+				} else {
+					window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+				}
+			}
+		</script>
+	</body>
+
+</html>

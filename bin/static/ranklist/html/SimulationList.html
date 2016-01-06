@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="../img/favicon.ico">
+		<title>口袋学习</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body class="bg-bluelight">
+		<div class="w720">
+			<i class="big-head big-head-good "></i>
+			<div class="tc f16 color-graylight"><span class="color-yellow" id="name">昵称</span>在口袋自考刷题，速来围观～</div>
+			<div class="ranklist mt-2">
+				<ul class="clearfix color-white f16 tc">
+					<li>分数
+						<div class="eclip-bg"><span class="f22" id="source">200</span></div>
+					</li>
+					<li>时间
+						<div class="eclip-bg"><span class="f14" id="time">88</span></div>
+					</li>
+					<li>排名
+						<div class="eclip-bg"><span class="f22" id="rank">20</span></div>
+					</li>
+				</ul>
+			</div>
+			<div class="tc f16 color-white mt-14">知识点、讲解、真题、模拟题、公共课串讲</div>
+			<div class="tc f18 color-yellow">全免费哦~</div>
+		</div>
+		<div class="wxlink">
+			刷题长按图片 识别图中二维码
+			<img src="../img/IOS.png" width="60%">
+		</div>
+		<div class="fix-down clearfix">
+			<img src="../img/appicon.png" class="appicon">
+			<span class="tit f14 color5">口袋自考,刷题过关</span>
+			<a href="#" class="down-btn f14 color-white fr " onclick="go()">立即打开</a>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script  src="../js/fun.js"></script>
+	<script src="../js/shareanswer.js"></script>
+	<script src="../js/openApp.js"></script>
+	<script>
+		var url = location.search;
+		var theRequest = ChapterAnswer(url, true);
+		document.getElementById('name').innerText = theRequest.name;
+		document.getElementById('source').innerText = theRequest.source;
+		document.getElementById('time').innerText = formatSeconds(theRequest.time);
+		document.getElementById('rank').innerText = theRequest.rank+1 ;
+		
+				if (mobileAppInstall.gettype() != 1) {
+			if (mobileAppInstall.isWeixin()) {
+				$('.wxlink').show();
+				$('.fix-down').hide();
+			} else {
+				$('.fix-down').show();
+			}
+		}
+
+		function go() {
+			if (mobileAppInstall.gettype() == 1) {
+				mobileAppInstall.open('withustudy://kdzk/mainpage?data=mydata', 'http://a.app.qq.com/o/simple.jsp?pkgname=com.withustudy.koudaizikao');
+				return;
+			} else {
+				window.location = "https://itunes.apple.com/cn/app/kou-dai-zi-kao/id1048844353?mt=8";
+			}
+		}
+	</script>
+
+</html>
